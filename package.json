@@ -1,7 +1,7 @@
 {
-  "name": "vue-webpack",
+  "name": "api-server",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A api server for deltafx35c.com",
   "author": "xijing",
   "private": true,
   "scripts": {
