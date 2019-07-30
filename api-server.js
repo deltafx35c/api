@@ -1,7 +1,11 @@
 const express = require('express')
+const expressWs = require('express-ws')
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
+
+// 设置websocket
+expressWs(app)
 
 app.set('port', port)
 
@@ -17,13 +21,13 @@ app.set('port', port)
 // }
 
 // 设置api routes
-app.use('/api', require('./api/index'))
+app.use('/api', require('./api'))
 
 // 设置本地上传文件的静态资源服务
-if (process.env.NODE_ENV === "development"){
+if (process.env.NODE_ENV === "development") {
     app.use(express.static(__dirname))
-    console.log('server static resource at '+ __dirname)
+    console.log('server static resource at ' + __dirname)
 }
 
 app.listen(port, host)
-console.log('app listening at http://%s:%s',host,port)
+console.log('app listening at http://%s:%s', host, port)
