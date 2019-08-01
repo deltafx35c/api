@@ -12,6 +12,10 @@ router.ws('/echo', function (ws, req) {
   ws.on('close', () => {
     wsSet.delete(ws)
   })
+  ws.on('error', () => {
+    wsSet.delete(ws)
+    ws.terminate()
+  })
 
   const interval = setInterval(() => {
     wsSet.forEach((wsNode) => {
