@@ -5,6 +5,7 @@ router.ws('/echo', function (ws, req) {
   wsSet.add(ws)
   ws.on('pong', () => {
     ws.isAlive = true
+    console.log(new Date() + ' pong')
   })
   ws.on('message', (msg) => {
     wsSet.forEach(wsNode => wsNode.send(msg))
@@ -18,11 +19,13 @@ router.ws('/echo', function (ws, req) {
   })
 
   const interval = setInterval(() => {
-    wsSet.forEach((wsNode) => {
-      if (wsNode.isAlive === false) return wsNode.terminate()
-      wsNode.isAlive = false
-      wsNode.ping()
-    })
+    if (ws.isAlive === false || ws.readyState !== 1) {
+      console.log('websocket has been closed')
+      clearInterval(interval)
+      return ws.terminate()
+    }
+    ws.isAlive = false
+    ws.ping()
   }, 2000)
 })
 
