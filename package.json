@@ -15,7 +15,7 @@
     "express-ws": "^4.0.0",
     "gm": "^1.23.0",
     "gridfs-stream": "^1.1.1",
-    "mongodb": "^2.2.26",
+    "mongodb": "^3.6.1",
     "mongoose": "^4.10.6",
     "redis": "^2.7.1"
   },
